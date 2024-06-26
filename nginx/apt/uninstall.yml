@@ -1,0 +1,15 @@
+---
+- hosts: all
+  become: true  # Requires sudo privileges
+
+  tasks:
+    - name: Stop Nginx service
+      service:
+        name: nginx
+        state: stopped
+
+    - name: Uninstall Nginx
+      apt:
+        name: nginx
+        state: absent
+        autoremove: yes  # Remove unused dependencies

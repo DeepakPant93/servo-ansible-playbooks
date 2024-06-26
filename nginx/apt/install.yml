@@ -1,0 +1,18 @@
+---
+- hosts: all
+  become: true  # Requires sudo privileges
+
+  tasks:
+    - name: Update package lists
+      apt: update_cache=yes
+
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: present
+
+    - name: Start Nginx service
+      service:
+        name: nginx
+        state: started
+        enabled: yes
