@@ -2,7 +2,7 @@
 
 ---
 
-- hosts: test
+- hosts: dev
   become: true
   tasks:
    - name: Install packages that allow apt to be used over HTTPS
@@ -69,3 +69,25 @@
 
    - name: Install k3s
      shell: bash /usr/local/bin/index.html
+
+   - name: Update K3s permission
+     become: true
+     shell: sudo chmod 666 /etc/rancher/k3s/k3s.yaml
+     args:
+       chdir: /home/core
+
+   - name: Update docker permission
+     become: true
+     shell: sudo chmod 666 /var/run/docker.sock
+     args:
+       chdir: /home/core
+       warn: false
+   - name: Create an empty .bash_profile file
+     file:
+       path: "/home/core/.bash_profile"
+       state: touch
+   - name: Add a env variable for helm
+     copy:
+       dest: "/home/core/.bash_profile"
+       content: |
+         export KUBECONFIG=/etc/rancher/k3s/k3s.yaml  

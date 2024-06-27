@@ -1,0 +1,17 @@
+---
+- hosts: all  # Replace "all" with your target group
+  become: true  # Requires root privileges
+
+  tasks:
+    - name: Install development tools for Python3 (optional)
+      apt:
+        name: build-essential python3-dev
+        state: present
+    - name: Install Python3 package
+      apt:
+        name: python3
+        state: present
+    - name: Install pip for Python3
+      apt:
+        name: python3-pip
+        state: present

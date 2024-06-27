@@ -1,0 +1,17 @@
+---
+- hosts: all  # Replace "all" with your target group
+  become: true  # Requires root privileges
+
+  tasks:
+    - name: Install development tools for Python3 (optional)
+      yum:
+        name: "@development tools"
+        state: present
+    - name: Install Python3 package
+      yum:
+        name: python3
+        state: present
+    - name: Install pip for Python3
+      yum:
+        name: python3-pip
+        state: present
