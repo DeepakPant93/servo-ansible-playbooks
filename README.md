@@ -59,14 +59,17 @@ uninstall postgresql
 
 ### Configuration File
 
+### Path
+`/etc/servo/config.ini`
+
 Ensure your `config.ini` file is correctly set up to point to this repository and contains necessary default values. Here’s a sample configuration:
 
 ```ini
-[general]
+[ansible]
 ansible_path = /usr/bin/ansible
-playbook_repo_path = /path/to/servo-ansible-playbook
+#playbook_repo_path = /path/to/servo-ansible-playbook
 
-[defaults]
+[general]
 package_manager = apt
 user = default_user
 
