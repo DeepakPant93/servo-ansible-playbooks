@@ -1,0 +1,15 @@
+---
+- hosts: all  # Replace "all" with your target group
+  become: true  # Requires root privileges
+
+  tasks:
+    - name: Install Apache httpd package
+      yum:
+        name: httpd
+        state: present
+      # Optional: Enable and start the service after installation
+    - name: Enable and start httpd service
+      service:
+        name: httpd
+        state: started
+        enabled: yes

@@ -1,0 +1,15 @@
+---
+- hosts: all  # Replace "all" with your target group
+  become: true  # Requires root privileges
+
+  tasks:
+    - name: Install Apache httpd package
+      apt:
+        name: apache2
+        state: present
+      # Optional: Enable and start the service after installation
+    - name: Enable and start Apache service
+      service:
+        name: apache2
+        state: started
+        enabled: yes

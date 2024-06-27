@@ -1,0 +1,13 @@
+---
+- hosts: all  # Replace "all" with your target group
+  become: true  # Requires root privileges
+
+  tasks:
+    - name: Stop Apache service
+      service:
+        name: apache2
+        state: stopped
+    - name: Uninstall Apache httpd package
+      apt:
+        name: apache2
+        state: absent

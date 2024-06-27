@@ -1,0 +1,13 @@
+---
+- hosts: all  # Replace "all" with your target group
+  become: true  # Requires root privileges
+
+  tasks:
+    - name: Stop httpd service
+      service:
+        name: httpd
+        state: stopped
+    - name: Uninstall Apache httpd package
+      yum:
+        name: httpd
+        state: absent
