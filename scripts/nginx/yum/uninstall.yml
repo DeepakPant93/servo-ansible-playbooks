@@ -1,0 +1,13 @@
+---
+- hosts: all  # Replace "all" with your target group if needed
+  become: true  # Requires root privileges
+
+  tasks:
+    - name: Stop Nginx service
+      service:
+        name: nginx
+        state: stopped
+    - name: Uninstall Nginx package
+      yum:
+        name: nginx
+        state: absent
