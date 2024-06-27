@@ -1,13 +1,26 @@
----
-- hosts: all  # Replace "all" with your target group
-  become: true  # Requires root privileges
-
+- name: Uninstall Python3 package
+  hosts: all
   tasks:
+    - name: Check for packages that require Python3
+      command: dnf repoquery --whatrequires python3
+      register: python3_deps
+      ignore_errors: yes
+
+    - name: Fail if critical dependencies are found
+      fail:
+        msg: "Uninstallation aborted: critical dependencies found."
+      when: "'critical-package' in python3_deps.stdout"
+
+    - name: Uninstall non-critical dependencies
+      command: dnf remove non-critical-package
+      when: "'non-critical-package' in python3_deps.stdout"
+
     - name: Uninstall Python3 package
-      apt:
-        name: python3
-        state: absent
-    - name: Uninstall pip for Python3
-      apt:
-        name: python3-pip
-        state: absent
+      command: dnf remove python3 --setopt=protected_packages=
+      when: python3_deps.stdout == ""
+      ignore_errors: yes
+      register: uninstall_python3
+
+    - name: Print uninstallation result
+      debug:
+        msg: "Python3 uninstallation result: {{ uninstall_python3 }}"
