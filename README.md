@@ -78,6 +78,12 @@ host1 = 192.168.1.1
 host2 = 192.168.1.2
 ```
 
+### Ansible playbook repository
+The Servo application connects to an Ansible playbook repository to download playbooks. These playbooks are used to install and uninstall applications. Below is the URL of the Ansible repository.
+```
+https://github.com/DeepakPant93/servo-ansible-playbooks
+```
+
 ## Contributing
 
 We welcome contributions to this repository. To add new application playbooks or improve existing ones, please follow these steps:
