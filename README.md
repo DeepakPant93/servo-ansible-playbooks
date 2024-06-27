@@ -1,6 +1,3 @@
-# servo-ansible-playbooks
-Ansible playbook repository for servo project
-
 # Servo Ansible Playbook Repository
 
 Welcome to the Servo Ansible Playbook repository! This repository contains Ansible playbooks for installing and uninstalling a wide range of applications on remote servers. These playbooks are designed to be used with the Servo command line tool, providing a centralized and organized way to manage application deployments across multiple environments.
