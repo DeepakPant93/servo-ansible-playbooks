@@ -3,14 +3,22 @@
   become: true  # Requires root privileges
 
   tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
     - name: Install development tools for Python3 (optional)
       apt:
-        name: build-essential python3-dev
+        name:
+          - build-essential
+          - python3-dev
         state: present
+
     - name: Install Python3 package
       apt:
         name: python3
         state: present
+
     - name: Install pip for Python3
       apt:
         name: python3-pip
