@@ -1,0 +1,12 @@
+---
+- hosts: all
+  become: true
+
+  tasks:
+  - name: Update package lists
+    dnf:
+      update_cache: yes
+  - name: Install Fish shell
+    dnf:
+      name: fish
+      state: present

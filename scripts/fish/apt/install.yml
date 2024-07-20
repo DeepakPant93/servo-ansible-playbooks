@@ -1,0 +1,12 @@
+---
+- hosts: all
+  become: true
+
+  tasks:
+  - name: Update package lists
+    apt:
+      update_cache: yes
+  - name: Install Fish shell
+    apt:
+      name: fish
+      state: present

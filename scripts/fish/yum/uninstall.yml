@@ -1,0 +1,9 @@
+---
+- hosts: all
+  become: true
+
+  tasks:
+  - name: Uninstall Fish shell
+    dnf:
+      name: fish
+      state: absent

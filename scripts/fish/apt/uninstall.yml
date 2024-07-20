@@ -1,0 +1,9 @@
+---
+- hosts: all
+  become: true
+
+  tasks:
+  - name: Uninstall Fish shell
+    apt:
+      name: fish
+      state: absent
